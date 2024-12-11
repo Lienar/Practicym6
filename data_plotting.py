@@ -9,9 +9,9 @@ def create_and_save_plot(data, ticker, period, stile, filename=None):
     if 'Date' not in data:
         if pd.api.types.is_datetime64_any_dtype(data.index):
             dates = data.index.to_numpy()
-            plt.plot(dates, data['Close'].values, linestyle=stile[6], color=stile[7], label='Close Price',
+            plt.plot(dates, data['Close'].values, label=stile[6], linestyle=stile[7], color=stile[8],
                      marker=stile[1], markerfacecolor=stile[2], markersize=stile[3])
-            plt.plot(dates, data['Moving_Average'].values, linestyle=stile[8], color=stile[9], label='Moving Average')
+            plt.plot(dates, data['Moving_Average'].values, label=stile[9], linestyle=stile[10], color=stile[11])
             plt.grid(stile[0], which='both')
         else:
             print("Информация о дате отсутствует или не имеет распознаваемого формата.")
@@ -19,9 +19,9 @@ def create_and_save_plot(data, ticker, period, stile, filename=None):
     else:
         if not pd.api.types.is_datetime64_any_dtype(data['Date']):
             data['Date'] = pd.to_datetime(data['Date'])
-        plt.plot(data['Date'], data['Close'],  linestyle=stile[6], color=stile[7], label='Close Price',
+        plt.plot(data['Date'], data['Close'], label=stile[6], linestyle=stile[7], color=stile[8],
                  marker=stile[1], markerfacecolor=stile[2], markersize=stile[3])
-        plt.plot(data['Date'], data['Moving_Average'], linestyle=stile[8], color=stile[9], label='Moving Average')
+        plt.plot(data['Date'], data['Moving_Average'], label=stile[9], linestyle=stile[10], color=stile[11])
         plt.grid(stile[0], which='both')
 
     plt.title(f"{ticker} Цена акций с течением времени", color=stile[5])

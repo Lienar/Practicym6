@@ -75,9 +75,11 @@ def plotting_stile():
     ''' Функция меню настройки стиля графика '''
     print('Для входа в меню настройки стиля графика введите Yes для пропуск No')
     is_enter = input('Хотите войти в меню: ')
+    ''' Вывозапроса на вход в меню '''
     enter = 'in'
-    stile = [True, None, 'red', 10, 14, 'black', 'solid', 'black', 'solid', 'red']
+    stile = [True, None, 'red', 10, 14, 'black', 'Close Price', 'solid', 'black', 'Moving Average', 'solid', 'red']
     palitra = ['blue', 'green', 'red', 'purple', 'grey', 'yellow', 'black']
+    ''' Создание вспомогательных переменных '''
     if is_enter.lower() == 'yes':
         while enter.lower() != 'exit':
             print(' ')
@@ -90,6 +92,7 @@ def plotting_stile():
             print(f'6. Отображение сетки текущие значение {stile[0]}')
             print('7. Подменю настройки графиков')
             enter = input('Введите номер пункта для установки значения или exit для выхода: ')
+            ''' Отображение меню настройки '''
             if enter == '1':
                 print(' ')
                 font_size = int(input('Введите значение размера шрифта от 8 до 24: '))
@@ -100,6 +103,7 @@ def plotting_stile():
                     font_size = 24
                     print('Размер шрифта слишком велик установлен максимальный размер')
                 stile[4] = font_size
+                ''' Настройка размера шрифта '''
             if enter == '2':
                 print(' ')
                 print('Выберите параметр для настройки')
@@ -112,6 +116,7 @@ def plotting_stile():
                 print('7. black(черный стоит по умолчанию)')
                 index = input('Введите номер цвета: ')
                 stile[5] = palitra[int(index)-1]
+                ''' Настройка цвета информационного текста '''
             if enter == '3':
                 print(' ')
                 is_mark = input('Введите Yes для отображения маркеров значений и No чтобы их скрыть (по умолчанию маркеры скрыты): ')
@@ -119,6 +124,7 @@ def plotting_stile():
                     stile[1] = 'o'
                 else:
                     stile[1] = is_mark
+                ''' Настройка отображения маркеров точек параметров '''
             if enter == '4':
                 print(' ')
                 print('Выберите параметр для настройки')
@@ -131,6 +137,7 @@ def plotting_stile():
                 print('7. black(черный)')
                 index = input('Введите номер цвета: ')
                 stile[2] = palitra[int(index) - 1]
+                ''' Настройка цвета маркеров '''
             if enter == '5':
                 print(' ')
                 mark_size = int(input('Введите значение размера шрифта от 1 до 12: '))
@@ -141,6 +148,7 @@ def plotting_stile():
                     mark_size = 12
                     print('Размер маркера слишком велик установлен максимальный размер')
                 stile[3] = mark_size
+                ''' Настройка размеров маркеров '''
             if enter == '6':
                 print(' ')
                 is_mark = input(
@@ -149,74 +157,72 @@ def plotting_stile():
                     stile[0] = True
                 else:
                     stile[0] = False
+                ''' Настройка отображения сетки '''
             if enter == '7':
-                stily_graf_temp = graf_plot_menu(stile)
-                for i in range(0, len(stily_graf_temp)):
-                    stile[i+6] = stily_graf_temp[i]
+                stile_graf_temp = graf_plot_menu(stile)
+                for index in range(0, len(stile_graf_temp)):
+                    stile[index + 6] = stile_graf_temp[index]
+                ''' Настройка отображения графиков '''
     return stile
 
 def graf_plot_menu(stile):
+    ''' Функция настройки параметров графики '''
     enter = 'in'
-    graf_stile = ['solid', 'black', 'solid', 'red']
-    for i in range(len(stile)-len(graf_stile), len(stile)):
-        graf_stile[i-(len(stile)-len(graf_stile))] = stile[i]
+    graf_stile = []
+    graf_name = []
+    return_data = []
+    for i in range(6, len(stile)):
+        if i % 3 == 0:
+            graf_name.append(stile[i])
+        else:
+            graf_stile.append(stile[i])
+        return_data.append('i')
     line_stile = ['solid', 'dotted', 'dashed', 'dashdot']
     line_color = ['blue', 'green', 'red', 'purple', 'grey', 'yellow', 'black']
+    ''' Настройка дополнительных параметров '''
     while enter.lower() != 'exit':
         print(' ')
         print('Выберите параметр для настройки')
-        print(f'1. Стиль графика значение цены на момент закрытия текущие значение {graf_stile[0]}')
-        print(f'2. Цвет графика значение цены на момент закрытия текущие значение {graf_stile[1]}')
-        print(f'3. Стиль графика средних значений текущие значение {graf_stile[2]}')
-        print(f'4. Цвет графика средних значений текущие значение {graf_stile[3]}')
+        index = 0
+        for i in range(1, len(graf_stile), 2):
+            print(f'{i}. Стиль графика {graf_name[index]} текущие значение {graf_stile[i-1]}')
+            print(f'{i+1}. Цвет графика {graf_name[index]} текущие значение {graf_stile[i]}')
+            index += 1
         print(' ')
+        ''' Создание меню выбора изменяемого параметра графика'''
         enter = input('Введите параметр меню или exit для выхода: ')
-        if enter == '1':
-            print(' ')
-            print('Выберите параметр для настройки')
-            print('1. сплошная линия')
-            print('2. линия из точек')
-            print('3. пунктирная линия')
-            print('4. пунктирная с точками в промежутках')
-            index = input('Введите номер цвета: ')
-            graf_stile[0] = line_stile[int(index) - 1]
-        if enter == '2':
-            print(' ')
-            print('Выберите параметр для настройки')
-            print('1. blue(синий)')
-            print('2. green(зеленый)')
-            print('3. red(красный)')
-            print('4. purple(голубой)')
-            print('5. grey(серый)')
-            print('6. yellow(желтый)')
-            print('7. black(черный стоит по умолчанию)')
-            index = input('Введите номер цвета: ')
-            graf_stile[1] = line_color[int(index) - 1]
-        if enter == '3':
-            print(' ')
-            print('Выберите параметр для настройки')
-            print('1. сплошная линия')
-            print('2. линия из точек')
-            print('3. пунктирная линия')
-            print('4. пунктирная с точками в промежутках')
-            index = input('Введите номер цвета: ')
-            graf_stile[2] = line_stile[int(index) - 1]
-        if enter == '4':
-            print(' ')
-            print('Выберите параметр для настройки')
-            print('1. blue(синий)')
-            print('2. green(зеленый)')
-            print('3. red(красный стоит по умолчанию)')
-            print('4. purple(голубой)')
-            print('5. grey(серый)')
-            print('6. yellow(желтый)')
-            print('7. black(черный)')
-            index = input('Введите номер цвета: ')
-            graf_stile[3] = line_color[int(index) - 1]
-    return graf_stile
+        for i in range(1, len(graf_stile), 2):
+            if enter == f'{i}':
+                print(' ')
+                print('Выберите параметр для настройки')
+                print('1. сплошная линия')
+                print('2. линия из точек')
+                print('3. пунктирная линия')
+                print('4. пунктирная с точками в промежутках')
+                index = input('Введите номер цвета: ')
+                graf_stile[i-1] = line_stile[int(index) - 1]
+                ''' Меню выбора типа линии графика '''
+            if enter == f'{i+1}':
+                print(' ')
+                print('Выберите параметр для настройки')
+                print('1. blue(синий)')
+                print('2. green(зеленый)')
+                print('3. red(красный)')
+                print('4. purple(голубой)')
+                print('5. grey(серый)')
+                print('6. yellow(желтый)')
+                print('7. black(черный стоит по умолчанию)')
+                index = input('Введите номер цвета: ')
+                graf_stile[i] = line_color[int(index) - 1]
+                ''' Меню выбора цвета графика '''
+    for i in range(0, len(return_data), 3):
+        index = int(i/3)
+        return_data[i] = graf_name[index]
+        return_data[i+1] = graf_stile[index*2]
+        return_data[i+2] = graf_stile[index*2+1]
+    ''' Формирование возвращаемых данных '''
+    return return_data
 
 if __name__ == "__main__":
     main()
-
-
 
