@@ -11,14 +11,14 @@
 ## Вид меню до использования
 ![](https://github.com/Lienar/Practicym6/blob/main/Screens/Screen5.jpg)
 
+## Контрольный график до использования меню
+![](https://github.com/Lienar/Practicym6/blob/main/Screens//Default/AAPL_1mo_stock_price_chart_Default.png)
+
 ## Вид меню после использования
 ![](https://github.com/Lienar/Practicym6/blob/main/Screens/Screen5a.jpg)
 
 ## Результирующий график
 ![](https://github.com/Lienar/Practicym6/blob/main/Screens//Default/AAPL_1mo_stock_price_chart.png)
-
-## Контрольный график до использования меню
-![](https://github.com/Lienar/Practicym6/blob/main/Screens//Default/AAPL_1mo_stock_price_chart_Default.png)
 
 ## Базовый график RSI
 ![](https://github.com/Lienar/Practicym6/blob/main/Screens/RSI/AAPL_1mo_RSI_Default.png)
