@@ -9,11 +9,11 @@
 ### временной дата с 1mo
 
 ## Вид меню до использования
-![]()
+![](https://github.com/Lienar/Practicym6/blob/main/Screens/Screen5.jpg)
 https://github.com/Lienar/Practicym6/blob/main/Screens/Screen5.jpg
 ## Вид меню после использования
-![]()
-https://github.com/Lienar/Practicym6/blob/main/Screens/Screen5a.jpg
+![](https://github.com/Lienar/Practicym6/blob/main/Screens/Screen5a.jpg)
+
 ## Результирующий график
 ![](https://github.com/Lienar/Practicym6/blob/main/Screens//Default/AAPL_1mo_stock_price_chart.png)
 
