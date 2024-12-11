@@ -131,8 +131,8 @@ def plotting_stile():
                 ''' Настройка цвета информационного текста '''
             if enter == '3':
                 print(' ')
-                is_grid = input(
-                    'Введите Yes для отображения сетки и No чтобы их скрыть (по умолчанию сетка отображается): ')
+                is_grid = input('Введите Yes для отображения сетки и No чтобы их скрыть '
+                                '(по умолчанию сетка отображается): ')
                 if is_grid.lower() == 'yes':
                     stile['grid'] = True
                 else:
@@ -194,6 +194,7 @@ def grafs_plot_menu(stile, line_stile, palitra, mark_stile):
             choose_index = 'in'
         else:
             choose_index = 'exit'
+        ''' Цикл выбора графика'''
         while choose_index != 'exit':
             plot_menu_for_graf(temp_graf_param, name, param_index)
             choose_index = input('Введите номер позиции: ')
@@ -206,6 +207,7 @@ def grafs_plot_menu(stile, line_stile, palitra, mark_stile):
                     temp_index = int(temp_index)-1
                     graf_stile[param_index] = line_stile[temp_index][1]
                     temp_graf_param[param_index] = line_stile[temp_index][0]
+                ''' Меню настройки стиля линий графика '''
             if choose_index == '2':
                 print(' ')
                 print('Выберите цвет линии графика')
@@ -215,8 +217,10 @@ def grafs_plot_menu(stile, line_stile, palitra, mark_stile):
                     temp_index = int(temp_index)-1
                     graf_stile[param_index + 1] = palitra[temp_index][1]
                     temp_graf_param[param_index + 1] = palitra[temp_index][0]
+                ''' Меню настройки цвета линий графика '''
             if choose_index == '3':
                 menu_attribute_plot(mark_stile)
+                print('для отключения маркеров введите None')
                 temp_index = input('Введите номер стиля: ')
                 if temp_index == 'None':
                     graf_stile[param_index + 3] = None
@@ -225,9 +229,9 @@ def grafs_plot_menu(stile, line_stile, palitra, mark_stile):
                     temp_index = int(temp_index)-1
                     graf_stile[param_index + 2] = mark_stile[temp_index][1]
                     temp_graf_param[param_index + 2] = mark_stile[temp_index][0]
+                ''' Меню настройки вывода меток на значениях '''
             if choose_index == '4':
                 print(' ')
-                print('для отключения введите None')
                 print('Выберите цвет маркера: ')
                 menu_attribute_plot(palitra)
                 temp_index = input('Введите номер цвета: ')
@@ -235,6 +239,7 @@ def grafs_plot_menu(stile, line_stile, palitra, mark_stile):
                     temp_index = int(temp_index)-1
                     graf_stile[param_index + 3] = palitra[temp_index][1]
                     temp_graf_param[param_index + 3] = palitra[temp_index][0]
+                ''' Меню настройки цвета меток на значениях '''
             if choose_index == '5':
                 temp_size = int(input('Выберите размер маркера от 1 до 10:'))
                 if temp_size < 1:
@@ -243,11 +248,13 @@ def grafs_plot_menu(stile, line_stile, palitra, mark_stile):
                     temp_size = 10
                 graf_stile[param_index + 4] = temp_size
                 temp_graf_param[param_index + 4] = temp_size
+                ''' Меню настройки размера меток на значениях '''
         print(' ')
         return_data = [graf_stile, temp_graf_param]
     return return_data
 
 def plot_menu_for_graf(stile, name, index):
+    ''' Функция отрисовки меню выбора изменяемого параметра графика '''
     print(' ')
     print(f'1. Выбор стиля линии графика {name} текущие значение {stile[index]}')
     print(f'2. Выбор цвет графика {name} текущие значение {stile[index + 1]}')
@@ -258,10 +265,12 @@ def plot_menu_for_graf(stile, name, index):
     print(' ')
 
 def menu_attribute_plot(objects):
+    ''' Функция отрисовки меню выбора значения изменяемого параметра графика '''
     index = 1
     for object in objects:
         print(f'{index} описание {object[0]}, обозначение {object[1]}')
         index += 1
+    ''' Цикл отрисовки вариантов выборва '''
     print('для возврашения введите back')
     print(' ')
 
